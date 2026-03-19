@@ -10,14 +10,16 @@ parser.add_argument("-l", help="city name")
 args = parser.parse_args()
 
 
+# grabs all data
 def get_coordinates(city):
     api_requests = {"name": city}
     data = requests.get(
         "https://geocoding-api.open-meteo.com/v1/search", params=api_requests
-    )
-    return data.json()
+    ).json()
+    lat = data["results"][0]["latitude"]
+    lon = data["results"][0]["longitude"]
+
+    print(lat, lon)
 
 
-result = get_coordinates(args.l)
-print(result["results"][0]["latitude"])
-print(result["results"][0]["longitude"])
+get_coordinates(args.l)

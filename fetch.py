@@ -5,10 +5,6 @@ import requests
 
 from weather_icons import get_weather_icon, weather_icons
 
-parser = argparse.ArgumentParser()
-parser.add_argument("-l", help="city name")
-args = parser.parse_args()
-
 
 # grabs data from open meteo and prints the latitude and longitude of a location
 def get_coordinates(city):
@@ -35,20 +31,29 @@ def get_weather(lat, lon):
     return data
 
 
-if args.l:
-    lat, lon = get_coordinates(args.l)
-    results = get_weather(lat, lon)
-    condition = get_weather_icon(results["current"]["weather_code"])
-    art = weather_icons[condition].splitlines()
-    lines = art.count("\n")
-    art_width = max(len(line) for line in art) + 3
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser()
+    parser.add_argument("-l", help="city name")
+    args = parser.parse_args()
 
-    info = [
-        f"City: {args.l}",
-        f"Temp: {results['current']['temperature_2m']}°F",
-        f"Humidity: {results['current']['relative_humidity_2m']}%",
-        f"Condition: {condition} {results['current']['weather_code']}",
-    ]
+    if args.l:
+        lat, lon = get_coordinates(args.l)
+        results = get_weather(lat, lon)
+        condition = get_weather_icon(results["current"]["weather_code"])
+        art = weather_icons[condition].splitlines()
+        art_width = max(len(line) for line in art) + 3
 
-    for art_line, info_line in zip_longest(art, info, fillvalue=""):
-        print(f"{art_line:<{art_width}}  {info_line}")
+        info = [
+            f"City: {args.l}",
+            f"Temp: {results['current']['temperature_2m']}°F",
+            f"Humidity: {results['current']['relative_humidity_2m']}%",
+            f"Condition: {condition}",
+            f"Feels Like: {results['current']['apparent_temperature']}°F",
+            f"Wind: {results['current']['wind_speed_10m']} mph",
+            f"Precipitation: {results['current']['precipitation']} mm",
+            f"Cloud Cover: {results['current']['cloud_cover']}%",
+            f"UV Index: {results['current']['uv_index']}",
+        ]
+
+        for art_line, info_line in zip_longest(art, info, fillvalue=""):
+            print(f"{art_line:<{15}}  {info_line}")

@@ -1,36 +1,33 @@
 def get_weather_icon(code):
     match code:
         case 0:
-            return "Sunny"
+            return "sunny"
         case 1 | 2 | 3:
-            return "Cloudy"
+            return "cloudy"
         case 51 | 53 | 55 | 61 | 63 | 65 | 80 | 81 | 82:
-            return "Rainy"
+            return "rainy"
         case _:
-            return "Sunny"  # default fallback
+            return "sunny"  # default fallback
 
 
 weather_icons = {
-    "Sunny": """\
+    "sunny": """\
     |
   \\ | /
    \\*/
 --**O**--
    /*\\
   / | \\
-    |
-""",
-    "Cloudy": """\
+    |""",
+    "cloudy": """\
   .--.
  (    )
-(______)
-""",
-    "Rainy": """\
+(______)""",
+    "rainy": """\
     __   _
   _(  )_( )_
  (_   _    _)
 / /(_) (__)
 / / / / / /
-/ / / / / /
-""",
+/ / / / / /""",
 }

@@ -43,7 +43,7 @@ if args.l:
 
     art = weather_icons["sunny"].splitlines()
     lines = art.count("\n")
-    art_width = max(len(line) for line in art)
+    art_width = max(len(line) for line in art) + 3
 
     info = [
         f"City: {args.l}",

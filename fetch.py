@@ -1,11 +1,9 @@
 import argparse
-import sys
 from itertools import zip_longest
 
 import requests
-from requests.sessions import Request
 
-from weather_icons import weather_icons
+from weather_icons import get_weather_icon, weather_icons
 
 parser = argparse.ArgumentParser()
 parser.add_argument("-l", help="city name")
@@ -40,8 +38,8 @@ def get_weather(lat, lon):
 if args.l:
     lat, lon = get_coordinates(args.l)
     results = get_weather(lat, lon)
-
-    art = weather_icons["sunny"].splitlines()
+    condition = get_weather_icon(results["current"]["weather_code"])
+    art = weather_icons[condition].splitlines()
     lines = art.count("\n")
     art_width = max(len(line) for line in art) + 3
 
@@ -49,6 +47,7 @@ if args.l:
         f"City: {args.l}",
         f"Temp: {results['current']['temperature_2m']}°F",
         f"Humidity: {results['current']['relative_humidity_2m']}%",
+        f"Condition: {condition} {results['current']['weather_code']}",
     ]
 
     for art_line, info_line in zip_longest(art, info, fillvalue=""):

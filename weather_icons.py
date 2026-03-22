@@ -1,5 +1,5 @@
 weather_icons = {
-    "sunny": """
+    "sunny": """\
     |
   \\ | /
    \\*/
@@ -8,7 +8,7 @@ weather_icons = {
   / | \\
     |
 """,
-    "cloudy": """
+    "cloudy": """\
   .--.
  (    )
 (______)

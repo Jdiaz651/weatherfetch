@@ -13,6 +13,9 @@ def get_coordinates(city):
     data = requests.get(
         "https://geocoding-api.open-meteo.com/v1/search", params=api_requests
     ).json()
+    if "results" not in data:
+        print(f"City '{city}' not found.")
+        exit(1)
     lat = data["results"][0]["latitude"]
     lon = data["results"][0]["longitude"]
     return (lat, lon)
@@ -27,6 +30,7 @@ def get_current_coordinates():
 
 
 def get_weather(lat, lon, unit):
+    """Fetches current weather data for given coordinates and unit system."""
     api_requests = {
         "latitude": lat,
         "longitude": lon,
@@ -35,28 +39,39 @@ def get_weather(lat, lon, unit):
         "wind_speed_unit": "mph" if unit == "imperial" else "kmh",
         "precipitation_unit": "inch" if unit == "imperial" else "mm",
     }
-    data = requests.get(
-        "https://api.open-meteo.com/v1/forecast", params=api_requests
-    ).json()
-    return data
+
+    try:
+        data = requests.get(
+            "https://api.open-meteo.com/v1/forecast", params=api_requests
+        ).json()
+        return data
+    except requests.exceptions.ConnectionError:
+        print("Could not connect to weather API. Check your internet connection.")
+        exit(1)
 
 
-if __name__ == "__main__":
+def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("-l", help="city name")
     parser.add_argument("-u", help="unit system", default=DEFAULT_UNIT)
     args = parser.parse_args()
 
-    if args.u == ("imperial" or "i"):
+    if args.u in ("imperial", "i"):
         units = "imperial"
         temp_label = "°F"
         wind_label = "mph"
         precip_label = "in"
-    else:
+    elif args.u in ["metric", "m"]:
         units = "metric"
         temp_label = "°C"
         wind_label = "km/h"
         precip_label = "mm"
+    else:
+        print(f"Unknown unit: {args.u}, defaulting to {DEFAULT_UNIT}")
+        units = DEFAULT_UNIT
+        temp_label = "°F" if DEFAULT_UNIT == "imperial" else "°C"
+        wind_label = "mph" if DEFAULT_UNIT == "imperial" else "km/h"
+        precip_label = "in" if DEFAULT_UNIT == "imperial" else "mm"
 
     if args.l:
         lat, lon = get_coordinates(args.l)
@@ -68,7 +83,7 @@ if __name__ == "__main__":
     condition = get_weather_icon(results["current"]["weather_code"])
     art = weather_icons[condition].splitlines()
     art_width = max(len(line) for line in art) + 3
-    max(art_width, MIN_WIDTH)
+    art_width = max(art_width, MIN_WIDTH)
 
     info_options = {
         "city": f"City: {city}",
@@ -85,3 +100,7 @@ if __name__ == "__main__":
 
     for art_line, info_line in zip_longest(art, info, fillvalue=""):
         print(f"{art_line:<{art_width}}  {info_line}")
+
+
+if __name__ == "__main__":
+    main()

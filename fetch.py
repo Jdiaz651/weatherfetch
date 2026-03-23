@@ -3,11 +3,11 @@ from itertools import zip_longest
 
 import requests
 
-from config import DEFAULT_UNIT, DISPLAY_INFO
+from config import DEFAULT_UNIT, DISPLAY_INFO, MIN_WIDTH
 from weather_icons import get_weather_icon, weather_icons
 
 
-# grabs data from open meteo and prints the latitude and longitude of a location
+# returns lat and lon for a given city name
 def get_coordinates(city):
     api_requests = {"name": city}
     data = requests.get(
@@ -15,7 +15,6 @@ def get_coordinates(city):
     ).json()
     lat = data["results"][0]["latitude"]
     lon = data["results"][0]["longitude"]
-
     return (lat, lon)
 
 
@@ -69,6 +68,7 @@ if __name__ == "__main__":
     condition = get_weather_icon(results["current"]["weather_code"])
     art = weather_icons[condition].splitlines()
     art_width = max(len(line) for line in art) + 3
+    max(art_width, MIN_WIDTH)
 
     info_options = {
         "city": f"City: {city}",
@@ -84,4 +84,4 @@ if __name__ == "__main__":
     info = [info_options[key] for key in DISPLAY_INFO if key in info_options]
 
     for art_line, info_line in zip_longest(art, info, fillvalue=""):
-        print(f"{art_line:<{15}}  {info_line}")
+        print(f"{art_line:<{art_width}}  {info_line}")

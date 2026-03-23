@@ -1,6 +1,7 @@
 # config.py
 DEFAULT_UNIT = "imperial"
 DEFAULT_CITY = "miami"
+MIN_WIDTH = 15
 
 DISPLAY_INFO = [
     "city",

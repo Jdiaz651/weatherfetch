@@ -3,7 +3,7 @@ from itertools import zip_longest
 
 import requests
 
-from config import COLOR1, DEFAULT_UNIT, DISPLAY_INFO, MIN_WIDTH
+from config import BOLD, COLOR2, DEFAULT_UNIT, DISPLAY_INFO, MIN_WIDTH, RESET
 from weather_icons import get_weather_icon, weather_icons
 
 
@@ -50,8 +50,9 @@ def get_weather(lat, lon, unit):
         exit(1)
 
 
+# mainly to add color to the label
 def format_info(label, value):
-    return f"{BOLD}{COLOR1}{label}:{RESET} {value}"
+    return f"{BOLD}{COLOR2}{label}:{RESET} {value}"
 
 
 def main():
@@ -90,15 +91,27 @@ def main():
     art_width = max(art_width, MIN_WIDTH)
 
     info_options = {
-        "city": f"City: {city}",
-        "temperature": f"Temp: {results['current']['temperature_2m']}{temp_label}",
-        "feels_like": f"Feels Like: {results['current']['apparent_temperature']}{temp_label}",
-        "humidity": f"Humidity: {results['current']['relative_humidity_2m']}%",
-        "wind_speed": f"Wind: {results['current']['wind_speed_10m']} {wind_label}",
-        "precipitation": f"Precipitation: {results['current']['precipitation']} {precip_label}",
-        "cloud_cover": f"Cloud Cover: {results['current']['cloud_cover']}%",
-        "uv_index": f"UV Index: {results['current']['uv_index']}",
-        "condition": f"Condition: {condition}",
+        "city": format_info("City", city),
+        "temperature": format_info(
+            "Temp", f"{results['current']['temperature_2m']}{temp_label}"
+        ),
+        "feels_like": format_info(
+            "Feels Like", f"{results['current']['apparent_temperature']}{temp_label}"
+        ),
+        "humidity": format_info(
+            "Humidity", f"{results['current']['relative_humidity_2m']}%"
+        ),
+        "wind_speed": format_info(
+            "Wind", f"{results['current']['wind_speed_10m']} {wind_label}"
+        ),
+        "precipitation": format_info(
+            "Precipitation", f"{results['current']['precipitation']} {precip_label}"
+        ),
+        "cloud_cover": format_info(
+            "Cloud Cover", f"{results['current']['cloud_cover']}%"
+        ),
+        "uv_index": format_info("UV Index", f"{results['current']['uv_index']}"),
+        "condition": format_info("Condition", f"{condition}"),
     }
     info = [info_options[key] for key in DISPLAY_INFO if key in info_options]
 

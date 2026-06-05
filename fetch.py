@@ -3,7 +3,7 @@ from itertools import zip_longest
 
 import requests
 
-from config import DEFAULT_UNIT, DISPLAY_INFO, MIN_WIDTH
+from config import COLOR1, DEFAULT_UNIT, DISPLAY_INFO, MIN_WIDTH
 from weather_icons import get_weather_icon, weather_icons
 
 
@@ -48,6 +48,10 @@ def get_weather(lat, lon, unit):
     except requests.exceptions.ConnectionError:
         print("Could not connect to weather API. Check your internet connection.")
         exit(1)
+
+
+def format_info(label, value):
+    return f"{BOLD}{COLOR1}{label}:{RESET} {value}"
 
 
 def main():

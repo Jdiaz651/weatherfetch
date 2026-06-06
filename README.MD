@@ -9,13 +9,13 @@ Requires Python 3.10+
 Install with pipx (recommended):
 
 ```
-pipx install git+https://github.com/Jdiaz651/weatherfetch.git
+pipx install git+https://github.com/jdiaz651/weatherfetch.git
 ```
 
 Or with pip:
 
 ```
-pip install git+https://github.com/Jdiaz651/weatherfetch.git
+pip install git+https://github.com/jdiaz651/weatherfetch.git
 ```
 
 ## Usage

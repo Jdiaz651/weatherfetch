@@ -3,8 +3,8 @@ from itertools import zip_longest
 
 import requests
 
-from config import BOLD, COLOR2, DEFAULT_UNIT, DISPLAY_INFO, MIN_WIDTH, RESET
-from weather_icons import get_weather_icon, weather_icons
+from .config import BOLD, COLOR2, DEFAULT_UNIT, DISPLAY_INFO, MIN_WIDTH, RESET
+from .weather_icons import get_weather_icon, weather_icons
 
 
 # returns lat and lon for a given city name

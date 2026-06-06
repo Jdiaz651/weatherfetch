@@ -23,3 +23,11 @@ __pycache__/weather_icons.cpython-312.pyc
 __pycache__/config.cpython-312.pyc
 weatherfetch/__pycache__/config.cpython-312.pyc
 weatherfetch/__pycache__/weather_icons.cpython-312.pyc
+venv/bin/Activate.ps1
+venv/bin/activate
+venv/bin/activate.csh
+venv/bin/activate.fish
+venv/bin/idna
+venv/bin/normalizer
+venv/bin/pip
+venv/bin/pip3

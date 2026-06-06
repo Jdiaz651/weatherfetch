@@ -1,4 +1,4 @@
-from config import (
+from .config import (
     BOLD,
     COLOR0,
     COLOR1,
@@ -44,7 +44,7 @@ weather_icons = {
     {BOLD}{COLOR3}⠀⠀⠀⠀⠀⠀⠀⡿⣟⡻⣣⢛⣿⣧⡼⣟⣸⡛⣿⡻⣿⢄⠀⠣⠀⠀⠀⠀
     {BOLD}{COLOR3}⠀⠀⠀⠀⠀⢀⣴⣻⠝⠀⡷⠏⠹⡾⣽⡇⢺⣣⠈⠉⠻⣯⠀⠀⠀⠀⠀⠀
     {BOLD}{COLOR3}⠀⠀⠀⠀⠀⠍⠉⠀⠀⠔⠋⠀⠀⢹⣳⠇⠀⠍⠀⠀⠀⠍⠀⠀⠀⠀⠀⠀
-    {BOLD}{COLOR3}⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠜⠋⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀""",
+    {BOLD}{COLOR3}⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠜⠋⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀{RESET}""",
     "cloudy": f"""\
     {BOLD}{COLOR7}⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣀⣀⣀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
     {BOLD}{COLOR7}⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣤⠾⠋⠁⠀⠂⠈⠉⢢⣄⠀⠀⠀⠀⠀⠀⠀
@@ -56,7 +56,7 @@ weather_icons = {
     {BOLD}{COLOR7}⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⣿
     {BOLD}{COLOR7}⢹⣧⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⣿⠏
     {BOLD}{COLOR7}⠀⠻⣿⣦⣄⣀⣀⣀⣀⣀⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣀⣀⣤⣤⣾⣿⠇⠀
-    {BOLD}{COLOR7}⠀⠀⠈⠙⠛⠛⠛⠛⠛⠛⠛⠛⠛⠟⠛⠻⠛⠛⠛⠛⠛⠻⠿⠛⠋⠀⠀⠀""",
+    {BOLD}{COLOR7}⠀⠀⠈⠙⠛⠛⠛⠛⠛⠛⠛⠛⠛⠟⠛⠻⠛⠛⠛⠛⠛⠻⠿⠛⠋⠀⠀⠀{RESET}""",
     "rainy": f"""\
     {BOLD}{COLOR0}                  ⢀⣤⣶⡿⣽⣻⣞⣶⣤⣀
     {BOLD}{COLOR0}              ⢀ ⣴⣾⣿⣿⣿⢿⣿⡿⣿⣿⣾⣯⢷⣂
@@ -77,7 +77,7 @@ weather_icons = {
     {BOLD}{COLOR4}      ⠁         ⠐⠈⠄         ⠈
     {BOLD}{COLOR4}          ⣠⣶⠁          ⣠⡆
     {BOLD}{COLOR4}          ⠋⠆          ⠚⡽
-    {BOLD}{COLOR4}                       ⠁""",
+    {BOLD}{COLOR4}                       ⠁{RESET}""",
     "stormy": f"""\
     {BOLD}{COLOR3}     ⣴⠶⠶⠶⠶⢶⣤⠀⠀⠀⠀⠀
     {BOLD}{COLOR3}    ⢸⡏⠀⠀⠀⠀⣼⠏⠀⠀⠀⠀⠀
@@ -89,7 +89,7 @@ weather_icons = {
     {BOLD}{COLOR3}    ⢠⡟⠀⢀⣾⠏⠀⠀⠀⠀⠀⠀⠀
     {BOLD}{COLOR3}    ⣸⢃⣴⠟⠁⠀⠀⠀⠀⠀⠀⠀⠀
     {BOLD}{COLOR3}   ⢠⣿⡿⠋⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-    {BOLD}{COLOR3}   ⠘⠋⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+    {BOLD}{COLOR3}   ⠘⠋⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀{RESET}
     """,
     "snowy": f"""\
     {BOLD}{COLOR4}⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣀⢸⡇⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
@@ -103,7 +103,7 @@ weather_icons = {
     {BOLD}{COLOR4}⠀⠀⠀⠘⠋⢸⠇⠀⠟⠀⣠⡾⢻⡟⢷⣄⠀⠿⠀⠸⡏⠙⠃⠀⠀
     {BOLD}{COLOR4}⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠉⢀⣼⣧⡀⠉⠀⠀⠀⠀⠀⠀⠀⠀⠀
     {BOLD}{COLOR4}⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠛⢹⡏⠛⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-    {BOLD}{COLOR4}⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+    {BOLD}{COLOR4}⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀{RESET}
     """,
     "No available Condition": f"""\
     {BOLD}{COLOR1}⡞⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⢉⣉⣉⣉⣉⣉⣉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⢳
@@ -120,6 +120,6 @@ weather_icons = {
     {BOLD}{COLOR1}⡇⠀⠀⠘⢿⣿⣿⣦⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⢻⣿⣿⣿⡿⠃⠀⠀⢸
     {BOLD}{COLOR1}⡇⠀⠀⠀⠀⠙⢿⣿⣿⣷⣤⣄⣀⡀⠀⠀⢀⣀⣠⣴⣾⣿⣿⡿⠋⠀⠀⠀⠀⢸
     {BOLD}{COLOR1}⡇⠀⠀⠀⠀⠀⠀⠉⠛⠿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠿⠛⠉⠀⠀⠀⠀⠀⠀⢸
-    {BOLD}{COLOR1}⢧⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣈⣉⣉⣉⣉⣉⣉⣁⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⡼
+    {BOLD}{COLOR1}⢧⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣈⣉⣉⣉⣉⣉⣉⣁⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⡼{RESET}
     """,
 }

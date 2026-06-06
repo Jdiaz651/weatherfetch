@@ -21,3 +21,5 @@ Cargo.lock
 #.idea/
 __pycache__/weather_icons.cpython-312.pyc
 __pycache__/config.cpython-312.pyc
+weatherfetch/__pycache__/config.cpython-312.pyc
+weatherfetch/__pycache__/weather_icons.cpython-312.pyc

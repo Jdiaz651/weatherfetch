@@ -1,5 +1,4 @@
 # config.py
-from requests.models import REDIRECT_STATI
 
 DEFAULT_UNIT = "imperial"
 DEFAULT_CITY = "miami"

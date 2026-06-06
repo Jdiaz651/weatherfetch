@@ -1,0 +1,16 @@
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.backends.legacy:build"
+
+[project]
+name = "weatherfetch"
+version = "0.1.0"
+description = "A neofetch-inspired CLI weather tool"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "requests",
+]
+
+[project.scripts]
+weatherfetch = "weatherfetch.fetch:main"

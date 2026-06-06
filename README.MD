@@ -2,16 +2,20 @@
 
 A neofetch-inspired CLI tool that displays current weather conditions for any location, alongside ASCII art that reflects the current weather condition.
 
+## Installation
 
-## Requirements
+Requires Python 3.10+
 
-- Python 3.10+
-- `requests` library
-
-Install dependencies:
+Install with pipx (recommended):
 
 ```
-pip install -r requirements.txt
+pipx install git+https://github.com/Jdiaz651/weatherfetch.git
+```
+
+Or with pip:
+
+```
+pip install git+https://github.com/Jdiaz651/weatherfetch.git
 ```
 
 ## Usage
@@ -19,29 +23,29 @@ pip install -r requirements.txt
 Run with no arguments to use your current location (detected via IP):
 
 ```
-python3 fetch.py
+weatherfetch
 ```
 
 Specify a city with the `-l` flag:
 
 ```
-python3 fetch.py -l miami
-python3 fetch.py -l "deerfield beach"
+weatherfetch -l dublin
+weatherfetch -l "los angeles"
 ```
 
 Specify a unit system with the `-u` flag:
 
 ```
-python3 fetch.py -u imperial
-python3 fetch.py -u metric
-python3 fetch.py -u i
-python3 fetch.py -u m
+weatherfetch -u imperial
+weatherfetch -u metric
+weatherfetch -u i
+weatherfetch -u m
 ```
 
 Combine flags:
 
 ```
-python3 fetch.py -l chicago -u metric
+weatherfetch -l chicago -u metric
 ```
 
 ## Configuration
@@ -51,9 +55,6 @@ Edit `config.py` to set your personal defaults:
 ```python
 # Default unit system: "imperial" or "metric"
 DEFAULT_UNIT = "imperial"
-
-# Default city when no -l flag is provided (unused if auto location works)
-DEFAULT_CITY = "miami"
 
 # Minimum width of the ASCII art column
 MIN_WIDTH = 15
@@ -94,9 +95,11 @@ COLOR2 = "\033[32m"  # used for info label headers
 
 ```
 weatherfetch/
-    fetch.py          — main logic and entry point
-    weather_icons.py  — ASCII art and weather condition mapping
-    config.py         — user preferences and color settings
-    requirements.txt  — dependencies
-    README.md         — this file
+    weatherfetch/
+        __init__.py
+        fetch.py          — main logic and entry point
+        weather_icons.py  — ASCII art and weather condition mapping
+        config.py         — user preferences and color settings
+    pyproject.toml        — package configuration and dependencies
+    README.md             — this file
 ```
